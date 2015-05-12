@@ -1,2 +1,3 @@
-# FFSMES6
-Functional approach to Finite State Machine written in ES6
+# Finite State Machine examples
+
+* A simple fsm with Promise based  API.
