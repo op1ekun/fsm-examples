@@ -2,26 +2,11 @@
     'use strict';
 
     function onTransition(cb, result) {
-
-        var resultPromise, cbResult;
-
-        if (!cb) {
-            // if there is either no callback or result return, a fullfilled promise
-            return Promise.resolve(result != null ? result : true);
-        }
-
-        cbResult = cb(result);
-
-        if (cbResult.then) {
-            resultPromise = cbResult;
-        }
-        // callback result is not a promise
-        // wrap it into one!
-        else {
-            resultPromise = Promise.resolve(cbResult);
-        }
-
-        return resultPromise;        
+                // always wrap the callback
+        return Promise.resolve(cb ? cb(result) :
+                // if the  cb is not present resolve Promise
+                // with either the result or true 
+                (result != null ? result : true));        
     }
 
     function FSM() {
@@ -78,17 +63,14 @@
 
         return onTransition(_this._onBefore)
                 .then(function onBeforeSuccess(result) {
-                    console.log('onBeforeSuccess', result);
                     return onTransition(_this._onChange, result);
                 })
                 .then(function onuccess(result) {
                     _this._state = state;
 
-                    console.log('onChangeSuccess', result);
                     return onTransition(_this._onAfter, result);
                 })
                 .then(function onAfterTransition(result) {
-                    console.log('onAfterSuccess', result);
 
                     // reset callbacks
                     _this._onBefore = null;
