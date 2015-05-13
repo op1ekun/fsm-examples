@@ -1,0 +1,29 @@
+{
+  "name": "FFSMES6",
+  "version": "0.0.1",
+  "description": "Finite State Machine written in functional style in ES6",
+  "main": "ffsmes6.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/op1ekun/FFSMES6.git"
+  },
+  "keywords": [
+    "fsm",
+    "functional",
+    "es6"
+  ],
+  "author": "",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/op1ekun/FFSMES6/issues"
+  },
+  "homepage": "https://github.com/op1ekun/FFSMES6",
+  "devDependencies": {
+    "babel": "^5.1.10",
+    "grunt-babel": "^5.0.0",
+    "load-grunt-tasks": "^3.1.0"
+  }
+}
