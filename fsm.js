@@ -2,11 +2,17 @@
     'use strict';
 
     function onTransition(cb, result) {
-                // always wrap the callback
-        return Promise.resolve(cb ? cb(result) :
-                // if the  cb is not present resolve Promise
-                // with either the result or true 
-                (result != null ? result : true));        
+
+        // always wrap the callback in a promise
+        return Promise.resolve()
+            // will capture throws
+            .then(function() { 
+                return  cb ?     
+                        cb(result) :
+                        // if the cb is not present resolve Promise
+                        // with either the result or true 
+                        (result != null ? result : true);
+            });
     }
 
     function FSM() {
@@ -65,7 +71,7 @@
                 .then(function onBeforeSuccess(result) {
                     return onTransition(_this._onChange, result);
                 })
-                .then(function onuccess(result) {
+                .then(function onSuccess(result) {
                     _this._state = state;
 
                     return onTransition(_this._onAfter, result);
